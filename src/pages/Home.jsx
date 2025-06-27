@@ -5,7 +5,7 @@ import { getPopularMovies, searchMovies } from '../services/api'
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
-    const [popularMovies, setPopularMovies] = useState([]);
+    const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,7 @@ function Home() {
         const loadPopularMovies = async () => {
             try {
                 const movies = await getPopularMovies();
-                setPopularMovies(movies);
+                setMovies(movies);
             } catch (err) {
                 console.log(err);
                 setError("Failed to load movies...");
@@ -25,9 +25,28 @@ function Home() {
         loadPopularMovies();
     }, []);
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
-        alert(searchQuery);
+
+        // don't search for empty string
+        if (!searchQuery.trim()) return;
+
+        // don't search if already searching/loading
+        if (loading) return;
+        
+        setLoading(true);
+
+        try {
+            const searchResults = await searchMovies(searchQuery);
+            setMovies(searchResults);
+            setError(null);
+        } catch(err) {
+            console.log(err);
+            setError(`Failed to search for ${searchQuery}`);
+        } finally {
+            setLoading(false);
+        }
+
         setSearchQuery("");
     };
 
@@ -50,7 +69,7 @@ function Home() {
                 <div className='loading'>Loading...</div>
             ) : (
                 <div className="movies-grid">
-                    {popularMovies.map(movie => (
+                    {movies.map(movie => (
                         <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </div>
