@@ -1,12 +1,67 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🎬 Movie Database
 
-Currently, two official plugins are available:
+A simple and interactive React-based web application that lets users search for movies, view detailed information, and manage a list of their favorite movies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 Search for movies using the OMDb API
+- 📄 View details including title, poster, year, and plot
+- ⭐ Add or remove movies from your favorites list
+- 💾 Favorites persist locally using localStorage
+- ⚡ Fast and responsive UI built with React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **React** – Frontend library
+- **JavaScript (ES6+)**
+- **OMDb API** – Movie data provider
+- **CSS** – Styling
+- **localStorage** – Data persistence
+
+## 📦 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/JAl-Hassani/movie-database.git
+   cd movie-database
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the app locally**
+   ```bash
+   npm start
+   ```
+
+   The app should now be running at `http://localhost:3000`.
+
+## 🔑 API Key Setup
+
+This project uses the [OMDb API](http://www.omdbapi.com/). To fetch movie data, you’ll need an API key:
+
+1. Register at [OMDb API](http://www.omdbapi.com/apikey.aspx)
+2. Add your API key to the appropriate file (e.g. `api.js` or `.env`):
+   ```javascript
+   const API_KEY = 'your_api_key_here';
+   ```
+
+## 📁 Project Structure
+
+```
+movie-database/
+│
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   ├── App.js
+│   ├── api.js
+│   └── index.js
+├── .gitignore
+├── package.json
+└── README.md
+```
